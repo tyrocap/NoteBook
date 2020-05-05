@@ -1,7 +1,7 @@
 ### BOOK FINDER PROJECT
 
 #### ISSUES TO WORK ON TODAY (5/1/2020):
-- [ ] Home page front
+- [x] Home page front
 - [ ] Home page back
 
 #### ISSUES TO WORK ON TODAY (5/2/2020):
