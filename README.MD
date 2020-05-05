@@ -1,22 +1,22 @@
 ### BOOK FINDER PROJECT
 
 #### ISSUES TO WORK ON TODAY (5/1/2020):
-- [ ] Home page front
-- [ ] Home page back
+- [x] Home page front
+- [x] Home page back
 
 #### ISSUES TO WORK ON TODAY (5/2/2020):
-- [ ] Authentication
-- [ ] Category filter and search features  
-- [ ] Necessary data 
+- [x] Authentication
+- [x] Category filter and search features  
+- [x] Necessary data 
 
 #### ISSUES TO WORK ON TODAY (5/3/2020):
-- [ ] Notes page front 
-- [ ] Notes page basic backend
+- [x] Notes page front 
+- [x] Notes page basic backend
 
 #### ISSUES TO WORK ON TODAY (5/4/2020):
-- [ ] Add-book page front
-- [ ] Add-book page basic backend
-- [ ] Home page pagination 
+- [x] Add-book page front
+- [x] Add-book page basic backend
+- [x] Home page pagination 
 
 #### ISSUES TO WORK ON TODAY (5/5/2020):
 - [ ] Category filter optimization
