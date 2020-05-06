@@ -16,11 +16,12 @@
           </div>
         </div>
         <form method="get" name="bgg_type" id="bgg_type_form">
-            <button class="btn btn-light" style="height:40px;" type="submit"
-                    name="gg_result">Add
-            </button>
-        <input type="hidden" name="title_google" id="FormControlId3"
+          {% csrf_token %}
+            <input type="hidden" name="title_google" id="FormControlId3"
                    value="{{title_google}}">
+            <button class="btn btn-light" style="height:40px;" type="submit"
+                    name="gg_result" id="gg_result_button">Add
+            </button>
         </form>
     </div>
     <br>
@@ -33,12 +34,14 @@
           <div>
             by {{author_goodreads}}
           </div>
-            <input type="hidden" name="book_id_searh" id="FormControlId2"
-                   value="{{book_id_search}}">
+
         </div>
         <form method="get" name="bgd_type" id="bgd_type_form">
+            {% csrf_token %}
+            <input type="hidden" name="book_id_searh" id="FormControlId2"
+                   value="{{book_id_search}}">
             <button class="btn btn-light" style="height:40px;" type="submit"
-                    name="gd_result">Add
+                    name="gd_result" id="gd_result_button">Add
             </button>
         </form>
     </div>
@@ -54,22 +57,23 @@
           headers: { "X-CSRFToken": '{{csrf_token}}' }
         });
       $.ajax({
-          method:"GET",
+          method:"POST",
           url: '{% url 'add_new_book' %}',
           data: JSON.stringify({
-                'book_id_search':$('#FormControlId2').val(),
+                title_google:$('#FormControlId3').val(),
           }),
-          success: function(){
-                alert("AJAX request successfully completed");
+          success: function(json){
+                $("#gg_result_button").html('Added');
+                alert('Successfully submitted the form!');
           },
-
           error : function(xhr,errmsg,err) {
             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         },
       })
-  }
+  })
+
 
   $(document).on('submit','#bgd_type_form',function(event){
       event.preventDefault();
@@ -77,21 +81,21 @@
           headers: { "X-CSRFToken": '{{csrf_token}}' }
         });
       $.ajax({
-          method:"GET",
+          method:"POST",
           url: '{% url 'add_new_book' %}',
-          data: {
-                'title_google': $('#FormControlId3').val(),
+          data: JSON.stringify({
+                book_id_search:$('#FormControlId2').val(),
+          }),
+          success: function(json){
+                $("#gd_result_button").html('Added');
+                alert('Successfully submitted the form!');
           },
-          success: function(){
-          alert("AJAX request successfully completed");
-          },
-
           error : function(xhr,errmsg,err) {
             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         },
       })
-  }
+  })
 </script>
 {% endblock javascript %}
