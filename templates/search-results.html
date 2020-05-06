@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin: 50px; padding: 50px;">
+    <div class="row wow fadeIn row-no-gutters">
+        <img style="width:100px;height:140px;"  src="{{image_url_google}}"
+             alt="Book Cover">
+        <div class="col-lg-8">
+          <div>
+            {{title_google}}
+          </div>
+          <div>
+            by {{author_google}}
+          </div>
+        </div>
+        <form method="get" name="bgg_type" id="bgg_type_form">
+            <button class="btn btn-light" style="height:40px;" type="submit"
+                    name="gg_result">Add
+            </button>
+        <input type="hidden" name="title_google" id="FormControlId3"
+                   value="{{title_google}}">
+        </form>
+    </div>
+    <br>
+    <div class="row wow fadeIn row-no-gutters">
+        <img style="width:100px;height:140px;"  src="{{image_url_goodreads}}" alt="Book Cover">
+        <div class="col-lg-8">
+          <div>
+            {{title_goodreads}}
+          </div>
+          <div>
+            by {{author_goodreads}}
+          </div>
+            <input type="hidden" name="book_id_searh" id="FormControlId2"
+                   value="{{book_id_search}}">
+        </div>
+        <form method="get" name="bgd_type" id="bgd_type_form">
+            <button class="btn btn-light" style="height:40px;" type="submit"
+                    name="gd_result">Add
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+
+  $(document).on('submit','#bgg_type_form',function(event){
+      event.preventDefault();
+      $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+      $.ajax({
+          method:"GET",
+          url: '{% url 'add_new_book' %}',
+          data: JSON.stringify({
+                'book_id_search':$('#FormControlId2').val(),
+          }),
+          success: function(){
+                alert("AJAX request successfully completed");
+          },
+
+          error : function(xhr,errmsg,err) {
+            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        },
+      })
+  }
+
+  $(document).on('submit','#bgd_type_form',function(event){
+      event.preventDefault();
+      $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+      $.ajax({
+          method:"GET",
+          url: '{% url 'add_new_book' %}',
+          data: {
+                'title_google': $('#FormControlId3').val(),
+          },
+          success: function(){
+          alert("AJAX request successfully completed");
+          },
+
+          error : function(xhr,errmsg,err) {
+            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        },
+      })
+  }
+</script>
+{% endblock javascript %}
