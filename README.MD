@@ -34,6 +34,7 @@ Google and Goodreads databases through their respective APIs and add the
 book under interest or 2) add the book manually by entering the necessary
 information about a given work, including title, author, image, and description
 .   
+
 #### Technologies
 - Django 3.0.6
 - Python 3.7.4
@@ -42,25 +43,25 @@ information about a given work, including title, author, image, and description
 - PostgreSQL
 
 #### Tentative Schedule
-###### ISSUES TO WORK ON TODAY (5/1/2020):
+###### ISSUES TO WORK:
 - [x] Home page front
 - [x] Home page back
 
-###### ISSUES TO WORK ON TODAY (5/2/2020):
+###### ISSUES TO WORK:
 - [x] Authentication
 - [x] Category filter and search features  
 - [x] Necessary data 
 
-###### ISSUES TO WORK ON TODAY (5/3/2020):
+###### ISSUES TO WORK:
 - [x] Notes page front 
 - [x] Notes page basic backend
 
-###### ISSUES TO WORK ON TODAY (5/4/2020):
+###### ISSUES TO WORK:
 - [x] Add-book page front
 - [x] Add-book page basic backend
 - [x] Home page pagination 
 
-##### ISSUES TO WORK ON TODAY (5/5/2020):
+##### ISSUES TO WORK:
 - [x] Category filter optimization
 - [x] Add-book - manual part
 - [x] Add-book buttons
