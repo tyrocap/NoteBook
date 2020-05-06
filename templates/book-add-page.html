@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container">
+
+      <!--Section: Cards-->
+      <section class="pt-2">
+
+        <!-- Heading & Description -->
+        <div class="wow fadeIn">
+          <!--Section heading-->
+          <h2 class="h2 text-center mb-2">Add a book</h2>
+          <!--Section description-->
+        </div>
+        <!-- Heading & Description -->
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-lg-8 offset-2">
+            <h4 class="mb-2 font-weight-bold dark-grey-text">Search it on the
+              Web</h4>
+            <form class="col-12" name="book_search_form" method="get"
+                  id="book_search_form_Qfs12" action="{% url 'search_new_book' %}">
+              <li class="nav-item">
+                <input name="add_book_goodreads" class="form-control text-center" type="text"
+                       placeholder="Search by Title" aria-label="Search">
+                <!-- Button trigger modal -->
+                <div class="text-center mt-3">
+                  <button type="submit" class="btn btn-info btn-block">
+                    Find
+                  </button>
+                </div>
+              </li>
+            </form>
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr class="mb-3">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-lg-8 offset-2">
+            <h4 class="mb-2 font-weight-bold dark-grey-text">Add it
+              manually</h4>
+            <!-- Default form login -->
+            <form class="text-center p-2" action="#"
+                  name="book_manuallyadd_form" method="post">
+                <p class="h4 mb-2">Book Information</p>
+                <input type="text" class="form-control mb-4" name="title"
+                       placeholder="Title">
+                <input type="text" class="form-control mb-4" name="author"
+                       placeholder="Author">
+                <textarea type="text" class="form-control mb-4"
+                          name="description"
+                       placeholder="Description" rows="5"></textarea>
+                <div class="input-group mb-4">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image"
+                           id="inputGroupFile01" accept="image/*">
+                    <label class="custom-file-label"
+                           for="inputGroupFile01" style="text-align: left;">Image</label>
+                  </div>
+                </div>
+                <input type="text" class="form-control mb-4" name="page_count"
+                       placeholder="Page Count">
+              <button class="btn btn-info btn-block my-4" type="submit">Add
+              </button>
+            </form>
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Cards-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+{% endblock content %}
+
+<!--{% block javascript %}-->
+<!--<script>-->
+
+<!--  $(document).on('submit','#book_search_form_Qfs12',function(event){-->
+<!--      event.preventDefault()-->
+<!--      $.ajax({-->
+<!--          method:"GET",-->
+<!--          url: '{% url 'search_new_book' %}',-->
+<!--          data:{-->
+<!--                add_book_title:$('#add_book_title').val(),-->
+<!--          },-->
+<!--          success: function(){-->
+<!--                alert('Successfully submitted the form!');-->
+<!--          },-->
+<!--      })-->
+<!--  })-->
+<!--</script>-->
+<!--{% endblock javascript %}-->
