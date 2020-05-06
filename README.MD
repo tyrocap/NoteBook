@@ -25,13 +25,14 @@ this application is my partial answer to one of them: Are we really reading?
  - Individual Book Page - once user finds the book under interest, one click
 takes the user to book's unique page where the user has the ability to post
 multiple chain-like notes (each post is limited to 255 characters to
-reinforce the idea of synthesizing the most important idea). Under each post
+reinforce the idea of synthesizing the most important idea in a page/chapter/etc.). Under each
+ post
 or chain of posts, other users have the ability to comment, which supports
 'the clash of worldviews'. 
 - Book Search Page - in a case where a user is unable to locate a particular
 title, the site gives the user several options: 1) search the book from
 Google and Goodreads databases through their respective APIs and add the
-book under interest or 2) add the book manually by entering the necessary
+book or 2) add the book manually by entering the necessary
 information about a given work, including title, author, image, and description
 .   
 
