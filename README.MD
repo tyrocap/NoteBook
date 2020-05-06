@@ -62,11 +62,13 @@ information about a given work, including title, author, image, and description
 - [x] Add-book page basic backend
 - [x] Home page pagination 
 
-##### ISSUES TO WORK:
+###### ISSUES TO WORK:
 - [x] Category filter optimization
 - [x] Add-book - manual part
 - [x] Add-book buttons
 - [x] Add-book page final style
+
+##### ISSUES TO WORK:
 - [ ] Notes functionality
 - [ ] Comments functionality
 - [ ] Notes page style
