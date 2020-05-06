@@ -7,7 +7,7 @@ A notebook-like website created with Django, jQuery and PostgreSQL
 - Technologies
 - Tentative Schedule
 
-####Introduction
+#### Introduction
 As the title suggests, this is a single-page website intended to bring
 brevity of Twitter (character limit) and convenience of Goodreads (ease of
  CRUD) into one place and address 'The-Curse-of-Reading-and-Forgetting
@@ -34,14 +34,14 @@ Google and Goodreads databases through their respective APIs and add the
 book under interest or 2) add the book manually by entering the necessary
 information about a given work, including title, author, image, and description
 .   
-####Technologies
+#### Technologies
 - Django 3.0.6
 - Python 3.7.4
 - HTML/CSS
 - jQuery
 - PostgreSQL
 
-####Tentative Schedule
+#### Tentative Schedule
 ###### ISSUES TO WORK ON TODAY (5/1/2020):
 - [x] Home page front
 - [x] Home page back
