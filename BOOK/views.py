@@ -59,11 +59,12 @@ class NoteAddPage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_notes'] = Note.objects.filter(
-            note_user=self.request.user)
+            note_user=self.request.user, note_book=self.object)
         return context
 
 def note_add_book(request):
     if request.method == 'POST':
+        print(request.body)
         data = json.loads(request.body)
 
         # user of the note
@@ -82,10 +83,12 @@ def note_add_book(request):
 
         response_data = {}
         response_data['comment_text'] = comment_text
+
         return HttpResponse(
             json.dumps(response_data),
             content_type="application/json"
         )
+
     else:
         return HttpResponse(
             json.dumps({"nothing to see": "this isn't happening"}),
