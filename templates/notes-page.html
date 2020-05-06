@@ -65,13 +65,14 @@
                       id="main_note_form">
                   {% csrf_token %}
                   <div class="form-group">
-                    <label for="exampleFormControlTextarea3">Notes</label>
+                    <label for="exampleFormControlTextarea3">Notes
+                      Editor</label>
                     <textarea id="exampleFormControlTextarea3"
                               class="form-control"
                               name="note_book_textarea"
                               rows="4" maxlength="255"></textarea>
                     <input type="hidden" name="note_book_id123"
-                           value="123123123" id="exampleFormControlTextarea4">
+                           value="{{book.id}}" id="exampleFormControlTextarea4">
                     <button class="btn btn-light mt-4" type="submit" value="Submit">
                     </button>
                   </div>
@@ -90,11 +91,12 @@
                 <p class="h5 my-2">NOTES</p>
 
                 <p id="talk"></p>
+              {% for note in user_notes %}
+                <p>{{ note.note_body }}</p>
 
-                <p></p>
-
-                <p></p>
-
+                <p> on {{ note.note_date }}</p>
+                <hr>
+              {% endfor %}
               </div>
 
             </div>
@@ -128,13 +130,9 @@
                   <img class="d-flex mb-3 mx-auto z-depth-1" src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
                     alt="Generic placeholder image" style="width: 100px;">
                   <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                    <h5 class="mt-0 font-weight-bold">Caroline Horwitz
+                    <h5 class="mt-0 font-weight-bold">{{request.user}}
                     </h5>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti
-                    quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                    similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
-                    fuga.
+                    Info about the user.
                   </div>
                 </div>
 
