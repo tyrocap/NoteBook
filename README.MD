@@ -15,7 +15,7 @@ brevity of Twitter (character limit) and convenience of Goodreads (ease of
 about here is a special type where the spine of the book is familiar, the
 title rings some bells and the table of contents reminds an idea or two.     
 This type of forgetting raises a number of practical questions and
-this application is my partial answer to one of them: Am I really reading?  
+this application is my partial answer to one of them: Are we really reading?  
  Background aside, the website has following features and functionalities:
  - Authentication - although all user are welcome to visit the site, in order
   to fully participate they need to sign up to the site. This is handled by
