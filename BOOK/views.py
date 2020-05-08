@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from .models import Book, CustomUser, Note
+from .models import Book, CustomUser, Note, Comments
 from django.contrib.postgres.search import SearchVector
 import os
 import xml.etree.ElementTree as ET
@@ -15,7 +15,7 @@ from django.views.generic.detail import DetailView
 class BookListView(ListView):
     model = Book
     context_object_name = 'book_list'
-    paginate_by = 2
+    paginate_by = 12
     template_name = 'home-page.html'
 
     def get_context_data(self, **kwargs):
@@ -58,8 +58,8 @@ class NoteAddPage(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_notes'] = Note.objects.filter(
-            note_user=self.request.user, note_book=self.object)
+        context['user_notes'] = Note.objects.filter(note_book=self.object)
+        context['book_comments'] = Comments.objects.filter(comment_book=self.object)
         return context
 
 def note_add_book(request):
@@ -75,11 +75,45 @@ def note_add_book(request):
         note_book = Book.objects.get(id=comment_book_id)
 
         # text of the note
-        note_body = comment_text = data['note_book_textarea']
+        note_body = note_text = data['note_book_textarea']
 
         note = Note(note_user=note_user, note_book=note_book,
                     note_body=note_body)
         note.save()
+
+        response_data = {}
+        response_data['note_text'] = note_text
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+
+
+def comment_add_book(request):
+    if request.method == 'POST':
+        print(request.body)
+        data = json.loads(request.body)
+
+        # user of the comment
+        comment_user = request.user
+
+        # book related to comment
+        comment_book_id = data['comment_book_id']
+        comment_book = Book.objects.get(id=comment_book_id)
+
+        # text of the comment
+        comment_text = data['comment_text']
+
+        comment = Comments(comment_user=comment_user, comment_book=comment_book,
+                    comment_text=comment_text)
+        comment.save()
 
         response_data = {}
         response_data['comment_text'] = comment_text
@@ -94,6 +128,7 @@ def note_add_book(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
 
 class Book_Add_Page(ListView):
     model = CustomUser
