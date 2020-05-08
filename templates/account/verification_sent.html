@@ -1,12 +1,21 @@
-{% extends "account/base.html" %}
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
 
 {% load i18n %}
+{% load account %}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
-{% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
 
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+{% block content %}
+    <main class="pt-4">
+        <div class="container m-5">
+            <div class="col-6 offset-3 mt-5">
+                <h1>{% trans "Verify Your E-mail Address" %}</h1>
+
+                <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+            </div>
+        </div>
+    </main>
 
 {% endblock %}
