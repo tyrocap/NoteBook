@@ -1,4 +1,6 @@
 ### SUM-NOTES PROJECT
+https://sumnotes.herokuapp.com
+
 A notebook-like website created with Django, jQuery and PostgreSQL  
 (Inspired by brevity of Twitter and convenience of Goodreads)
 
@@ -69,6 +71,6 @@ information about a given work, including title, author, image, and description
 - [x] Add-book page final style
 
 ##### ISSUES TO WORK:
-- [ ] Notes functionality
-- [ ] Comments functionality
-- [ ] Notes page style
+- [x] Notes functionality
+- [x] Comments functionality
+- [x] Notes page style
