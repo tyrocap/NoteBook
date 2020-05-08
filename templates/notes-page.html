@@ -8,13 +8,13 @@
     <div class="container">
 
       <!--Section: Post-->
-      <section class="mt-4">
+      <section class="mt-1">
 
         <!--Grid row-->
         <div class="row">
 
           <!--Grid column-->
-          <div class="col-md-8 mb-4">
+          <div class="col-md-8 offset-2 mb-4">
 
             <!--Featured Image-->
             <div class="card mb-4 wow fadeIn">
@@ -30,23 +30,23 @@
                   <span><strong>{{ book }}</strong></span><br>
                   <span>by {{ book.author }}</span>
                   <hr class="my-1">
-                  <div class="row m-0">
-                    <a class="gr-hyperlink" href="#other_reviews">
-                      <meta itemprop="ratingCount" content="204627">204,627
-                      ratings
-                    </a>
-                    <span class="greyText">&nbsp;·&nbsp;</span>
-                    <a class="gr-hyperlink" href="#other_reviews">
-                      <meta itemprop="ratingCount" content="204627">204,627
-                      ratings
-                    </a>
-                    <span class="greyText">&nbsp;·&nbsp;</span>
-                    <a class="gr-hyperlink" href="#other_reviews">
-                      <meta itemprop="ratingCount" content="204627">204,627
-                      ratings
-                    </a>
-                  </div>
-                  <p>
+<!--                  <div class="row m-0">-->
+<!--                    <a class="gr-hyperlink" href="#other_reviews">-->
+<!--                      <meta itemprop="ratingCount" content="204627">204,627-->
+<!--                      ratings-->
+<!--                    </a>-->
+<!--                    <span class="greyText">&nbsp;·&nbsp;</span>-->
+<!--                    <a class="gr-hyperlink" href="#other_reviews">-->
+<!--                      <meta itemprop="ratingCount" content="204627">204,627-->
+<!--                      ratings-->
+<!--                    </a>-->
+<!--                    <span class="greyText">&nbsp;·&nbsp;</span>-->
+<!--                    <a class="gr-hyperlink" href="#other_reviews">-->
+<!--                      <meta itemprop="ratingCount" content="204627">204,627-->
+<!--                      ratings-->
+<!--                    </a>-->
+<!--                  </div>-->
+                  <p class="show-read-more">
                     {{ book.description }}
                   </p>
                 </div>
@@ -73,7 +73,7 @@
                               rows="4" maxlength="255"></textarea>
                     <input type="hidden" name="note_book_id123"
                            value="{{book.id}}" id="exampleFormControlTextarea4">
-                    <button class="btn btn-light mt-4" type="submit"
+                    <button class="btn btn-light btn-sm mt-4" type="submit"
                             value="Submit">Post
                     </button>
                   </div>
@@ -95,24 +95,28 @@
               {% for note in user_notes %}
                 <p><span class="text-primary">{{note.note_user|upper}}</span>
                   | {{ note.note_body }}</p>
-                <div class="row m-1 float-right">
-                  <p>{{ note.note_date }}</p>
-                  <input type="button" name="answer" onclick="ShowDiv()">
-                </div>
-                <div class="form-group mt-4" style="display:none;"
-                     id="comment_form-{{note.note_id}}">
-                      <input type="hidden"
-                             value="comment_form-{{note.note_id}}"
-                             id="comment_form_id" name="comment_form_id">
-                      <textarea class="form-control"
-                                id="quickReplyFormComment" rows="1"></textarea>
-                      <div class="text-center">
-                        <button class="btn btn-info btn-sm" type="submit">Post</button>
-                      </div>
-                </div>
-
+                <p>{{ note.note_date }}</p>
                 <hr>
               {% endfor %}
+                <br>
+                <input class="offset-5"  type="button" name="answer"
+                       onclick="ShowDiv()"
+                       value="Comment">
+                <form method="post" action="{% url 'comment_add_book' %}"
+                      id="main_comment_form">
+                  {% csrf_token %}
+                  <div class="form-group mt-4" style="display:none;"
+                     id="comment_form_id123">
+                      <textarea class="form-control"
+                                id="CommentFormTextarea2" rows="1"></textarea>
+                      <input value="{{ book.id }}" name="note_id"
+                             type="hidden" id="CommentFormBookId3">
+                      <div class="text-center">
+                        <button class="btn btn-light btn-sm" type="submit">Post
+                        </button>
+                      </div>
+                </div>
+                </form>
               </div>
 
             </div>
@@ -122,126 +126,26 @@
 
             <!--Comments-->
             <div class="card card-comments mb-3 wow fadeIn">
-              <div class="card-header font-weight-bold">3 comments</div>
+              <div
+                      class="card-header font-weight-bold">{{book_comments.count }} comments</div>
               <div class="card-body">
 
                 <div class="media d-block d-md-flex">
                   <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                    comment 1
-
+                    <p id="comment_p1">
+                    </p>
+                    {% for comment in book_comments %}
+                      <p><span class="text-primary">{{comment.comment_user|upper}}</span>
+                        | {{ comment.comment_text }}.</p>
+                      <p>{{ comment.comment_date }}</p>
+                      <hr>
+                    {% endfor %}
                   </div>
                 </div>
 
               </div>
             </div>
             <!--/.Comments-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-4 mb-4">
-
-            <!--Card: Jumbotron-->
-            <div class="card blue-gradient mb-4 wow fadeIn">
-
-              <!-- Content -->
-              <div class="card-body text-white text-center">
-
-                <h4 class="mb-4">
-                  <strong>Learn Bootstrap 4 with MDB</strong>
-                </h4>
-                <p>
-                  <strong>Best & free guide of responsive web design</strong>
-                </p>
-                <p class="mb-4">
-                  <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video
-                    and written versions available. Create your own, stunning website.</strong>
-                </p>
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-md">Start
-                  free tutorial
-                  <i class="fas fa-graduation-cap ml-2"></i>
-                </a>
-
-              </div>
-              <!-- Content -->
-            </div>
-            <!--Card: Jumbotron-->
-
-            <!--Card : Dynamic content wrapper-->
-            <div class="card mb-4 text-center wow fadeIn">
-
-              <div class="card-header">Do you want to get informed about new articles?</div>
-
-              <!--Card content-->
-              <div class="card-body">
-
-                <!-- Default form login -->
-                <form>
-
-                  <!-- Default input email -->
-                  <label class="grey-text">Your email</label>
-                  <input type="email" id="defaultFormLoginEmailEx" class="form-control">
-
-                  <br>
-
-                  <!-- Default input password -->
-                  <label for="defaultFormNameEx" class="grey-text">Your name</label>
-                  <input type="text" id="defaultFormNameEx" class="form-control">
-
-                  <div class="text-center mt-4">
-                    <button class="btn btn-info btn-md" type="submit">Sign up</button>
-                  </div>
-                </form>
-                <!-- Default form login -->
-
-              </div>
-
-            </div>
-            <!--/.Card : Dynamic content wrapper-->
-
-            <!--Card-->
-            <div class="card mb-4 wow fadeIn">
-
-              <div class="card-header">Related articles</div>
-
-              <!--Card content-->
-              <div class="card-body">
-
-                <ul class="list-unstyled">
-                  <li class="media">
-                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder7.jpg" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <a href="">
-                        <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                      </a>
-                      Cras sit amet nibh libero, in gravida nulla (...)
-                    </div>
-                  </li>
-                  <li class="media my-4">
-                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg" alt="An image">
-                    <div class="media-body">
-                      <a href="">
-                        <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                      </a>
-                      Cras sit amet nibh libero, in gravida nulla (...)
-                    </div>
-                  </li>
-                  <li class="media">
-                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <a href="">
-                        <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                      </a>
-                      Cras sit amet nibh libero, in gravida nulla (...)
-                    </div>
-                  </li>
-                </ul>
-
-              </div>
-
-            </div>
-            <!--/.Card-->
 
           </div>
           <!--Grid column-->
@@ -276,7 +180,7 @@
           success: function(json){
                 $('#exampleFormControlTextarea3').val('');
                 console.log(json);
-                $("#talk").prepend("<p>"+json.comment_text+"</p>");
+                $("#talk").prepend("<p>"+json.note_text+"</p>");
                 console.log("success");
                 alert('Successfully submitted the form!');
           },
@@ -290,8 +194,54 @@
   })
 
   function ShowDiv() {
-    var comment_form_id = $('#comment_form_id').val()
-    document.getElementById("comment_form_id").style.display = "";
+    document.getElementById("comment_form_id123").style.display = "";
   }
+
+    $(document).on('submit','#main_comment_form',function(event){
+      event.preventDefault();
+      $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+      $.ajax({
+          method:"POST",
+          url: '{% url 'comment_add_book' %}',
+          data: JSON.stringify({
+                comment_text:$('#CommentFormTextarea2')
+                .val(),
+                comment_book_id: $('#CommentFormBookId3').val(),
+          }),
+          success: function(json){
+                $('#CommentFormTextarea2').val('');
+                console.log(json);
+                $("#comment_p1").prepend("<p>"+json.comment_text+"</p>");
+                console.log("success");
+                alert('Successfully submitted the form!');
+          },
+
+          error : function(xhr,errmsg,err) {
+            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        },
+      })
+  })
+
+    $(document).ready(function(){
+        var maxLength = 500;
+        $(".show-read-more").each(function(){
+            var myStr = $(this).text();
+            if($.trim(myStr).length > maxLength){
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read-more">read more...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function(){
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
 </script>
 {% endblock javascript %}
