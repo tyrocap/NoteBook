@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import BookListView, NoteAddPage, Book_Add_Page, search_new_book,\
-    note_add_book, add_new_book
+    note_add_book, add_new_book, comment_add_book
 
 urlpatterns = [
     path('', BookListView.as_view(), name='home_page'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('search_book/', search_new_book, name='search_new_book'),
     path('note_add_book/', note_add_book, name='note_add_book'),
     path('add_new_book/', add_new_book, name='add_new_book'),
+    path('comment_add_book/', comment_add_book, name='comment_add_book'),
 ]
