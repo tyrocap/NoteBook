@@ -32,6 +32,18 @@ class Book(models.Model):
         return reverse('notes_page', args=[str(self.id)])
 
 
+class Comments(models.Model):
+    comment_id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    comment_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    comment_book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    comment_text = models.TextField(blank=True, null=True)
+    comment_date = models.DateTimeField(auto_now_add=True)
+
+
 class Note(models.Model):
     note_id = models.UUIDField(
         primary_key=True,
