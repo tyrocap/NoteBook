@@ -16,6 +16,11 @@
   <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <style>
+    .show-read-more .more-text{
+        display: none;
+    }
+</style>
 </head>
 
 <body>
@@ -46,10 +51,6 @@
               <a class="nav-link waves-effect" href="{% url 'home_page' %}">Home
                 <span class="sr-only">(current)</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#">
-                Notes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect"
@@ -107,11 +108,12 @@
     {% endblock content %}
     </div>
 
-  <footer class="page-footer text-center font-small mdb-color darken-2">
+  <footer
+          class="page-footer text-center font-small mdb-color darken-2">
         <!--Copyright-->
     <div class="footer-copyright py-3">
       © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+      <a href="#"> AD LLC </a>
     </div>
     <!--/.Copyright-->
   </footer>
